@@ -15,7 +15,7 @@ import retrofit2.create
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
     @Provides
-    fun providesUserListService() : UserListService {
+    fun provideUserListService() : UserListService {
         return Retrofit.Builder()
             .baseUrl("https://randomuser.me/api/")
             .addConverterFactory(Json {ignoreUnknownKeys = true}.asConverterFactory("application/json".toMediaType()))

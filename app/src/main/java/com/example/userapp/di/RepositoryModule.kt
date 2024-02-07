@@ -1,7 +1,7 @@
 package com.example.userapp.di
 
-import com.example.userapp.data.repository.UserListRepositoryImpl
-import com.example.userapp.domain.repository.UserListRepository
+import com.example.userapp.data.repository.UserRemoteRepositoryImpl
+import com.example.userapp.domain.repository.UserRemoteRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -13,6 +13,6 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun provideUserListRepository(
-        userListRepositoryImpl: UserListRepositoryImpl
-    ) : UserListRepository
+        userListRepositoryImpl: UserRemoteRepositoryImpl
+    ) : UserRemoteRepository
 }

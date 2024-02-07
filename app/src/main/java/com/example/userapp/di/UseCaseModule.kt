@@ -1,7 +1,11 @@
 package com.example.userapp.di
 
-import com.example.userapp.domain.repository.UserListRepository
-import com.example.userapp.domain.use_cases.GetUserListUseCase
+import com.example.userapp.domain.repository.UserLocalRepository
+import com.example.userapp.domain.repository.UserRemoteRepository
+import com.example.userapp.domain.use_cases.DeleteLocalUserListUseCase
+import com.example.userapp.domain.use_cases.GetLocalUserListUseCase
+import com.example.userapp.domain.use_cases.GetRemoteUserListUseCase
+import com.example.userapp.domain.use_cases.InsertLocalUserListUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,6 +18,21 @@ object UseCaseModule {
 
     @Singleton
     @Provides
-    fun providesGetUserListUseCase(userListRepository: UserListRepository) =
-        GetUserListUseCase(userListRepository)
+    fun provideGetRemoteUserListUseCase(userRemoteRepository: UserRemoteRepository) =
+        GetRemoteUserListUseCase(userRemoteRepository)
+
+    @Singleton
+    @Provides
+    fun provideGetLocalUserListUseCase(userLocalRepository: UserLocalRepository) =
+        GetLocalUserListUseCase(userLocalRepository)
+
+    @Singleton
+    @Provides
+    fun provideInsertLocalUserListUseCase(userLocalRepository: UserLocalRepository) =
+        InsertLocalUserListUseCase(userLocalRepository)
+
+    @Singleton
+    @Provides
+    fun provideDeleteLocalUserListUseCase(userLocalRepository: UserLocalRepository) =
+        DeleteLocalUserListUseCase(userLocalRepository)
 }
