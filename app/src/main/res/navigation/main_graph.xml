@@ -7,9 +7,17 @@
     <fragment
         android:id="@+id/userListFragment"
         android:name="com.example.userapp.ui.screens.user_list.UserListFragment"
-        android:label="UserListFragment" />
+        android:label="UserListFragment" >
+        <action
+            android:id="@+id/action_userListFragment_to_userDetailsFragment"
+            app:destination="@id/userDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/userDetailsFragment"
         android:name="com.example.userapp.ui.screens.user_details.UserDetailsFragment"
-        android:label="UserDetailsFragment" />
+        android:label="UserDetailsFragment" >
+        <action
+            android:id="@+id/action_userDetailsFragment_to_userListFragment"
+            app:destination="@id/userListFragment" />
+    </fragment>
 </navigation>

@@ -27,20 +27,17 @@ class UserListViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            getLocalUserListUseCase.invoke().collect {
-                _uiState.value = UserListUiState.Success(it)
+            getLocalUserListUseCase().collect {
+                //_uiState.value = UserListUiState.Success(it)
             }
         }
     }
 
     fun getUserList() {
         viewModelScope.launch {
-            deleteLocalUserListUseCase.invoke()
-            getRemoteUserListUseCase.invoke(10).collect {
+            deleteLocalUserListUseCase()
+            getRemoteUserListUseCase(20).collect {
                 _uiState.value = UserListUiState.Success(it.results)
-                it.results.forEach { user ->
-                    insertLocalUserListUseCase.invoke(user)
-                }
             }
         }
     }

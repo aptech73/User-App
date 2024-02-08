@@ -4,15 +4,15 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.userapp.data.data_sources.network.model.User
+import com.example.userapp.data.data_sources.local.model.UserDbEntities
 
-@Database(entities = [User::class], exportSchema = false, version = 1)
+@Database(entities = arrayOf(UserDbEntities::class), exportSchema = false, version = 1)
 abstract class UsersDatabase : RoomDatabase() {
 
     abstract fun getUserDao() : UserDao
 
     companion object {
-        private const val DATABASE_NAME = "users.db"
+        private const val DATABASE_NAME = "users"
 
         @Volatile
         private var instance: UsersDatabase? = null
