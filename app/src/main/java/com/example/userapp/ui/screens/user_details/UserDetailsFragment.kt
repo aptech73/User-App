@@ -32,7 +32,7 @@ class UserDetailsFragment : Fragment(R.layout.fragment_user_details) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        println(args.user)
+        println(args.userDbEntities)
     }
 
     override fun onDestroyView() {

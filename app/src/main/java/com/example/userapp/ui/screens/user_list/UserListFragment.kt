@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import com.example.userapp.R
+import com.example.userapp.data.data_sources.local.model.UserDbEntities
 import com.example.userapp.data.data_sources.network.model.User
 import com.example.userapp.databinding.FragmentUserListBinding
 import com.example.userapp.ui.adapters.UserListAdapter
@@ -28,8 +29,8 @@ class UserListFragment : Fragment(R.layout.fragment_user_list) {
     private val viewModel : UserListViewModel by activityViewModels()
 
     private val adapter = UserListAdapter(object : UserListAdapter.OnItemClickListener{
-        override fun onUserItemClick(user: User) {
-            val direction = UserListFragmentDirections.actionUserListFragmentToUserDetailsFragment(user)
+        override fun onUserItemClick(userDbEntities: UserDbEntities) {
+            val direction = UserListFragmentDirections.actionUserListFragmentToUserDetailsFragment(userDbEntities)
             findNavController().navigate(direction)
         }
     })
