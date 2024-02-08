@@ -4,6 +4,6 @@ import com.example.userapp.data.data_sources.network.model.User
 import java.lang.Exception
 
 sealed class UserDetailsUiState {
-    data class Success(val user : User) : UserDetailsUiState()
+    data class Success(val pass : String) : UserDetailsUiState()
     data class Error (val exception: Exception) : UserDetailsUiState()
 }

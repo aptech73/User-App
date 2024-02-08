@@ -1,7 +1,10 @@
 package com.example.userapp.data.data_sources.network.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.Serializable
 
+@Parcelize
 @Serializable
 data class Login(
     val md5: String,
@@ -11,4 +14,4 @@ data class Login(
     val sha256: String,
     val username: String,
     val uuid: String
-)
+) : Parcelable
