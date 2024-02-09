@@ -39,6 +39,7 @@ class UserListViewModel @Inject constructor(
 
     fun getUserList() {
         viewModelScope.launch {
+            _uiState.value = UserListUiState()
             userDbEntities.clear()
             deleteLocalUserListUseCase()
             getRemoteUserListUseCase(20).collect {
