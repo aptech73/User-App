@@ -8,6 +8,7 @@ import com.example.userapp.domain.use_cases.DeleteLocalUserListUseCase
 import com.example.userapp.domain.use_cases.GetLocalUserListUseCase
 import com.example.userapp.domain.use_cases.GetRemoteUserListUseCase
 import com.example.userapp.domain.use_cases.InsertLocalUserListUseCase
+import com.example.userapp.utils.LoadState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -23,7 +24,7 @@ class UserListViewModel @Inject constructor(
     private val deleteLocalUserListUseCase: DeleteLocalUserListUseCase
 ): ViewModel() {
 
-    private val _uiState = MutableStateFlow(UserListUiState.Success(emptyList()))
+    private val _uiState = MutableStateFlow(UserListUiState())
     val uiState : StateFlow<UserListUiState> = _uiState
 
     private val userDbEntities : MutableList<UserDbEntities> = mutableListOf()
@@ -31,7 +32,7 @@ class UserListViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             getLocalUserListUseCase().collect {
-                _uiState.value = UserListUiState.Success(it)
+                _uiState.value = UserListUiState(LoadState.SUCCESS, it)
             }
         }
     }
@@ -46,7 +47,7 @@ class UserListViewModel @Inject constructor(
                     userDbEntities.add(tempUserDbEntities)
                     insertLocalUserListUseCase(tempUserDbEntities)
                 }
-                _uiState.value = UserListUiState.Success(userDbEntities)
+                _uiState.value = UserListUiState(LoadState.SUCCESS, userDbEntities)
             }
         }
     }
