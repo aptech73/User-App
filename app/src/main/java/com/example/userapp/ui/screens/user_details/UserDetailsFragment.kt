@@ -1,5 +1,6 @@
 package com.example.userapp.ui.screens.user_details
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
+import coil.load
 import com.example.userapp.R
 import com.example.userapp.data.data_sources.local.model.UserDbEntities
 import com.example.userapp.databinding.FragmentUserDetailsBinding
@@ -39,6 +41,8 @@ class UserDetailsFragment : Fragment(R.layout.fragment_user_details) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel.checkUserDetails(args.userDbEntities)
+
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect {uiState ->
@@ -55,11 +59,20 @@ class UserDetailsFragment : Fragment(R.layout.fragment_user_details) {
     private fun setLoadingUi() {
         binding.apply {
             loadIndicator.visibility = View.VISIBLE
+            userDetailsScroll.visibility = View.GONE
         }
     }
+    @SuppressLint("SetTextI18n")
     private fun setSuccessUi(userDbEntities : UserDbEntities) {
         binding.apply {
             loadIndicator.visibility = View.GONE
+            userDetailsScroll.visibility = View.VISIBLE
+            userImage.load(userDbEntities.pictureLarge)
+            userName.text = userDbEntities.nameTitle +
+                    " " + userDbEntities.nameFirst +
+                    " " + userDbEntities.nameLast
+            userEmail.text = userDbEntities.email
+            userPhone.text = userDbEntities.phone
         }
     }
     private fun setErrorUi() {}

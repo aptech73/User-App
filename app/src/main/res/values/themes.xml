@@ -6,4 +6,8 @@
     </style>
 
     <style name="Theme.UserApp" parent="Base.Theme.UserApp" />
+
+    <style name="TextDetailsStyle" >
+        <item name="android:textSize">20sp</item>
+    </style>
 </resources>
