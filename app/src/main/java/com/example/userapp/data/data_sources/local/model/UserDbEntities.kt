@@ -3,8 +3,6 @@ package com.example.userapp.data.data_sources.local.model
 import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.userapp.data.data_sources.network.model.Street
-import com.example.userapp.data.data_sources.network.model.Timezone
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

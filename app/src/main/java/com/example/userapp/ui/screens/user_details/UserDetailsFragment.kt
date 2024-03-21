@@ -15,6 +15,7 @@ import coil.load
 import com.example.userapp.R
 import com.example.userapp.data.data_sources.local.model.UserDbEntities
 import com.example.userapp.databinding.FragmentUserDetailsBinding
+import com.example.userapp.domain.model.User
 import com.example.userapp.utils.LoadState
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -41,7 +42,7 @@ class UserDetailsFragment : Fragment(R.layout.fragment_user_details) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.checkUserDetails(args.userDbEntities)
+        viewModel.checkUserDetails(args.user)
 
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -62,17 +63,17 @@ class UserDetailsFragment : Fragment(R.layout.fragment_user_details) {
             userDetailsScroll.visibility = View.GONE
         }
     }
-    @SuppressLint("SetTextI18n")
-    private fun setSuccessUi(userDbEntities : UserDbEntities) {
+
+    private fun setSuccessUi(user: User) {
         binding.apply {
             loadIndicator.visibility = View.GONE
             userDetailsScroll.visibility = View.VISIBLE
-            userImage.load(userDbEntities.pictureLarge)
-            userName.text = userDbEntities.nameTitle +
-                    " " + userDbEntities.nameFirst +
-                    " " + userDbEntities.nameLast
-            userEmail.text = userDbEntities.email
-            userPhone.text = userDbEntities.phone
+            userImage.load(user.image)
+            userName.text = user.titleName +
+                    " " + user.firstName +
+                    " " + user.lastName
+            userEmail.text = user.email
+            userPhone.text = user.phone
         }
     }
     private fun setErrorUi() {}

@@ -1,9 +1,9 @@
 package com.example.userapp.di
 
 import com.example.userapp.data.repository.UserLocalRepositoryImpl
-import com.example.userapp.data.repository.UserRemoteRepositoryImpl
+import com.example.userapp.data.repository.UserRepositoryImpl
 import com.example.userapp.domain.repository.UserLocalRepository
-import com.example.userapp.domain.repository.UserRemoteRepository
+import com.example.userapp.domain.repository.UserRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -14,12 +14,12 @@ import dagger.hilt.components.SingletonComponent
 abstract class RepositoryModule {
 
     @Binds
-    abstract fun provideUserRemoteRepository(
-        userRemoteRepositoryImpl: UserRemoteRepositoryImpl
-    ) : UserRemoteRepository
-
-    @Binds
     abstract fun provideUserLocalRepository(
         userLocalRepositoryImpl: UserLocalRepositoryImpl
     ) : UserLocalRepository
+
+    @Binds
+    abstract fun provideUserRepository(
+        userRepositoryImpl: UserRepositoryImpl
+    ) : UserRepository
 }

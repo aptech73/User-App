@@ -23,7 +23,7 @@
             android:id="@+id/action_userDetailsFragment_to_userListFragment"
             app:destination="@id/userListFragment" />
         <argument
-            android:name="UserDbEntities"
-            app:argType="com.example.userapp.data.data_sources.local.model.UserDbEntities"/>
+            android:name="user"
+            app:argType="com.example.userapp.domain.model.User" />
     </fragment>
 </navigation>

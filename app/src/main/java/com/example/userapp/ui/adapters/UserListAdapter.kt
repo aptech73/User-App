@@ -7,36 +7,36 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.userapp.data.data_sources.local.model.UserDbEntities
-import com.example.userapp.data.data_sources.network.model.User
 import com.example.userapp.databinding.ItemUserBinding
+import com.example.userapp.domain.model.User
 
 class UserListAdapter (
     private val clickListener : OnItemClickListener
-) : ListAdapter<UserDbEntities, UserListAdapter.UserListViewHolder>(UserListDiffCallback) {
+) : ListAdapter<User, UserListAdapter.UserListViewHolder>(UserListDiffCallback) {
 
     interface OnItemClickListener {
-        fun onUserItemClick(userDbEntities: UserDbEntities)
+        fun onUserItemClick(user : User)
     }
     inner class UserListViewHolder(
         private val binding : ItemUserBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(userDbEntities : UserDbEntities) {
+        fun bind(user : User) {
             binding.apply {
-                root.setOnClickListener { clickListener.onUserItemClick(userDbEntities) }
-                userEmail.text = userDbEntities.email
-                userName.text = "${userDbEntities.nameFirst} ${userDbEntities.nameLast}"
-                userImage.load(userDbEntities.pictureThumbnail)
+                root.setOnClickListener { clickListener.onUserItemClick(user) }
+                userEmail.text = user.email
+                userName.text = "${user.firstName} ${user.lastName}"
+                userImage.load(user.image)
             }
         }
     }
 
-    private object UserListDiffCallback : DiffUtil.ItemCallback<UserDbEntities>() {
-        override fun areItemsTheSame(oldItem: UserDbEntities, newItem: UserDbEntities): Boolean {
-            return oldItem.nameFirst == newItem.nameFirst
+    private object UserListDiffCallback : DiffUtil.ItemCallback<User>() {
+        override fun areItemsTheSame(oldItem: User, newItem: User): Boolean {
+            return oldItem == newItem
         }
 
-        override fun areContentsTheSame(oldItem: UserDbEntities, newItem: UserDbEntities): Boolean {
-            return oldItem == newItem
+        override fun areContentsTheSame(oldItem: User, newItem: User): Boolean {
+            return oldItem.firstName == newItem.firstName
         }
 
     }

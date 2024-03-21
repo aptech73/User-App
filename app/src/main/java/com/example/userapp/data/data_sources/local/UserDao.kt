@@ -5,7 +5,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.userapp.data.data_sources.local.model.UserDbEntities
-import com.example.userapp.data.data_sources.network.model.User
 import kotlinx.coroutines.flow.Flow
 
 @Dao

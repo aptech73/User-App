@@ -11,14 +11,12 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import com.example.userapp.R
 import com.example.userapp.data.data_sources.local.model.UserDbEntities
-import com.example.userapp.data.data_sources.network.model.User
 import com.example.userapp.databinding.FragmentUserListBinding
+import com.example.userapp.domain.model.User
 import com.example.userapp.ui.adapters.UserListAdapter
 import com.example.userapp.utils.LoadState
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class UserListFragment : Fragment(R.layout.fragment_user_list) {
@@ -30,8 +28,8 @@ class UserListFragment : Fragment(R.layout.fragment_user_list) {
     private val viewModel : UserListViewModel by activityViewModels()
 
     private val adapter = UserListAdapter(object : UserListAdapter.OnItemClickListener{
-        override fun onUserItemClick(userDbEntities: UserDbEntities) {
-            val direction = UserListFragmentDirections.actionUserListFragmentToUserDetailsFragment(userDbEntities)
+        override fun onUserItemClick(user : User) {
+            val direction = UserListFragmentDirections.actionUserListFragmentToUserDetailsFragment(user)
             findNavController().navigate(direction)
         }
     })
@@ -67,7 +65,7 @@ class UserListFragment : Fragment(R.layout.fragment_user_list) {
         binding.apply {
             userList.adapter = adapter
             userList.layoutManager = LinearLayoutManager(context)
-            getUserListFab.setOnClickListener { viewModel.getUserList() }
+            //getUserListFab.setOnClickListener { viewModel.getUserList() }
         }
     }
 
@@ -77,9 +75,9 @@ class UserListFragment : Fragment(R.layout.fragment_user_list) {
             userList.visibility = View.GONE
         }
     }
-    private fun setSuccessUi(userDbEntities: List<UserDbEntities>) {
+    private fun setSuccessUi(users : List<User>) {
         binding.apply {
-            adapter.submitList(userDbEntities)
+            adapter.submitList(users)
             loadIndicator.visibility = View.GONE
             userList.visibility = View.VISIBLE
         }

@@ -4,9 +4,9 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.Serializable
 
-@Parcelize
 @Serializable
-data class Street(
-    val name: String,
-    val number: Int
-) : Parcelable
+data class PictureDto(
+    val large: String,
+    val medium: String,
+    val thumbnail: String
+)
