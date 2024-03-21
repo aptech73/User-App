@@ -1,6 +1,5 @@
 package com.example.userapp.ui.screens.user_details
 
-import com.example.userapp.data.data_sources.local.model.UserDbEntities
 import com.example.userapp.domain.model.User
 import com.example.userapp.utils.LoadState
 

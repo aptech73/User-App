@@ -1,6 +1,5 @@
 package com.example.userapp.ui.screens.user_details
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,11 +12,9 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
 import coil.load
 import com.example.userapp.R
-import com.example.userapp.data.data_sources.local.model.UserDbEntities
 import com.example.userapp.databinding.FragmentUserDetailsBinding
 import com.example.userapp.domain.model.User
 import com.example.userapp.utils.LoadState
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class UserDetailsFragment : Fragment(R.layout.fragment_user_details) {

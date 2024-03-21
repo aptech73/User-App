@@ -5,4 +5,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface UserRepository {
     fun getUserList() : Flow<List<User>>
+    suspend fun insertUserIntoDb(user: User)
+    suspend fun deleteAllUser()
 }

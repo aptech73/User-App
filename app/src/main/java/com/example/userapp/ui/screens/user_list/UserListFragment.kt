@@ -12,7 +12,6 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.userapp.R
-import com.example.userapp.data.data_sources.local.model.UserDbEntities
 import com.example.userapp.databinding.FragmentUserListBinding
 import com.example.userapp.domain.model.User
 import com.example.userapp.ui.adapters.UserListAdapter

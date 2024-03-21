@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.example.userapp.data.data_sources.local.model.UserDbEntities
 import com.example.userapp.databinding.ItemUserBinding
 import com.example.userapp.domain.model.User
 
